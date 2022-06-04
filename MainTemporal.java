@@ -52,5 +52,5 @@ public class MainTemporal {
         UPDATE.setString(2,"R0003");
         int rowsUpdated = UPDATE.executeUpdate(); //Se enumera la cantidad de actualizaciones
         if (rowsUpdated > 0) {
-            System.out.println("EL REGISTRO SE ACTUALIZO CORRECTAMENTE"); //Se imprime si hay mas de 1 actualizacion
+            System.out.println("EL REGISTRO SE ACTUALIZO CORRECTAMENTE"); //Se imprime si hay mas de 1 actualizacion.
         }}
