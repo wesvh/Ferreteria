@@ -38,7 +38,7 @@ public class MainTemporal {
         // CONSULTAS
         String select = "SELECT * FROM productos" ; //Script de la consulta a listar
         Statement SELECT = conn.createStatement();
-        ResultSet result =statement.executeQuery(select); //Se le otorga la variable de select
+        ResultSet result =SELECT.executeQuery(select); //Se le otorga la variable de select
         while (result.next()){
         String nombre = result.getString(1); //Se establece en el GET el numero correspondiente al valor dentro de la lista a desear obtener
         int cantidad = result.getInt(5);
@@ -62,4 +62,4 @@ public class MainTemporal {
             System.out.println("BORRADO EXITOSO");            
         }
         
-        }}
+        }}}
