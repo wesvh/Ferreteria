@@ -43,4 +43,14 @@ public class MainTemporal {
         String nombre = result.getString(1); //Se establece en el GET el numero correspondiente al valor dentro de la lista a desear obtener
         int cantidad = result.getInt(5);
             System.out.println("Nombre del producto: " + nombre + " Cantidad de ese producto: " + cantidad);} 
+        
+        //SCRIPT DE UPDATE
+        
+        String update = "UPDATE productos SET valor_compra =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
+        PreparedStatement UPDATE = conn.prepareStatement(update);
+        UPDATE.setInt(1, 50000); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
+        UPDATE.setString(2,"R0003");
+        int rowsUpdated = UPDATE.executeUpdate(); //Se enumera la cantidad de actualizaciones
+        if (rowsUpdated > 0) {
+            System.out.println("EL REGISTRO SE ACTUALIZO CORRECTAMENTE"); //Se imprime si hay mas de 1 actualizacion
         }}
