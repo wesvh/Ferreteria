@@ -22,22 +22,22 @@ public class MainTemporal {
         ex.printStackTrace();}
         
         //Se inicializa la variable que contendra el script de INSERT   
-        String sql = "INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria) VALUES (?,?,?,?,?,?)";
-        PreparedStatement statement = conn.prepareStatement(sql);
+        String insert = "INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria) VALUES (?,?,?,?,?,?)";
+        PreparedStatement INSERT = conn.prepareStatement(insert);
         //Se reemplaza cada ? , en orden siendo (x,valor) x el numero del ? a reemplazar por "valor"
-        statement.setString(1 , "PRUEBA DE CONEXION"); 
-        statement.setString(2 , "R0003");
-        statement.setInt(3 , 1000);
-        statement.setInt(4 , 2500);
-        statement.setInt(5 , 50);
-        statement.setString(6 , "PVC");
-        int rowsInserted = statement.executeUpdate(); //ejecuta el script de SQL
+        INSERT.setString(1 , "PRUEBA DE CONEXION"); 
+        INSERT.setString(2 , "R0003");
+        INSERT.setInt(3 , 1000);
+        INSERT.setInt(4 , 2500);
+        INSERT.setInt(5 , 50);
+        INSERT.setString(6 , "PVC");
+        int rowsInserted = INSERT.executeUpdate(); //ejecuta el script de SQL
         if ( rowsInserted > 0) {
         System.out.println (" Insercion exitosa !"); //Devuelve esto si se logro hacer la insercion
         }
         // CONSULTAS
         String select = "SELECT * FROM productos" ; //Script de la consulta a listar
-        Statement statement = conn.createStatement();
+        Statement SELECT = conn.createStatement();
         ResultSet result =statement.executeQuery(select); //Se le otorga la variable de select
         while (result.next()){
         String nombre = result.getString(1); //Se establece en el GET el numero correspondiente al valor dentro de la lista a desear obtener
