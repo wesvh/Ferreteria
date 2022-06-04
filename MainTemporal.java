@@ -20,6 +20,7 @@ public class MainTemporal {
         }
     } catch(SQLException ex){
         ex.printStackTrace();}
+        
         //Se inicializa la variable que contendra el script de INSERT   
         String sql = "INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria) VALUES (?,?,?,?,?,?)";
         PreparedStatement statement = conn.prepareStatement(sql);
@@ -33,5 +34,13 @@ public class MainTemporal {
         int rowsInserted = statement.executeUpdate(); //ejecuta el script de SQL
         if ( rowsInserted > 0) {
         System.out.println (" Insercion exitosa !"); //Devuelve esto si se logro hacer la insercion
-               
-    }}}
+        }
+        // CONSULTAS
+        String select = "SELECT * FROM productos" ; //Script de la consulta a listar
+        Statement statement = conn.createStatement();
+        ResultSet result =statement.executeQuery(select); //Se le otorga la variable de select
+        while (result.next()){
+        String nombre = result.getString(1); //Se establece en el GET el numero correspondiente al valor dentro de la lista a desear obtener
+        int cantidad = result.getInt(5);
+            System.out.println("Nombre del producto: " + nombre + " Cantidad de ese producto: " + cantidad);} 
+        }}
