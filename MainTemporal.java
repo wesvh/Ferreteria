@@ -53,4 +53,13 @@ public class MainTemporal {
         int rowsUpdated = UPDATE.executeUpdate(); //Se enumera la cantidad de actualizaciones
         if (rowsUpdated > 0) {
             System.out.println("EL REGISTRO SE ACTUALIZO CORRECTAMENTE"); //Se imprime si hay mas de 1 actualizacion.
+        //SCRIPT DE BORRADO
+        String delete = "DELETE FROM productos WHERE referencia=?";  //Un ejemplo de borrar un dato en funcion de la referencia
+        PreparedStatement DELETE = conn.prepareStatement(delete);
+        DELETE.setString(1,"R0003"); // Mismo caso de reemplazo
+        int rowsDeleted = DELETE.executeUpdate(); //FUNCION DE ELIMINAR
+        if (rowsDeleted>0) {
+            System.out.println("BORRADO EXITOSO");            
+        }
+        
         }}
