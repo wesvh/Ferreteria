@@ -1,0 +1,11 @@
+CREATE SCHEMA `ferreteria` ;
+use ferreteria;
+CREATE TABLE productos(
+	  nombre char(35),
+	  referencia  char(5),
+    valor_compra Integer,
+    valor_venta Integer,
+    cantidad SmallInt,
+    categoria char(20));
+INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria)
+VALUES ("tubo de construccion","R0001",6500,8500,100,"pvc");
