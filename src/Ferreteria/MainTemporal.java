@@ -5,8 +5,9 @@ import java.util.Scanner;
 public class MainTemporal {
     
     public static void main(String[] args) throws SQLException {
-        Conexion exec = new Conexion();
-        exec.EstableciendoConexion();
+        Conexion start = new Conexion();
+        start.EstableciendoConexion();
+        Metodos run = new Metodos();
         String nom = "";
         int e = 0;
         int opcion = 0;
@@ -26,31 +27,27 @@ public class MainTemporal {
 
             switch (opcion) {
                 case 1:
-                    exec.agregarProductos();
+                    run.agregarProductos();
                     break;
                 case 2:
-                    exec.consultarProductos();
+                    run.consultarProductos();
                     break;
                 case 3:
-                    exec.consultarProductos();
+                    run.consultarProductos();
                     break;
                 case 4:
-                    exec.borrarProductos();
+                    run.borrarProductos();
                     break;
                 case 5:
-                    exec.modificarProductos();
+                    run.modificarProductos();
                     break;
                 case 6:
-                    exec.cerrandoConexion();
+                    start.cerrandoConexion();
                     break;
                 default:
                     System.out.println("Error: escogio una opción inválida");
             }
         } while (opcion != 6);
-        exec.agregarProductos();
-        exec.modificarProductos();
-        exec.consultarProductos();
-        exec.borrarProductos();
 
      
         }
