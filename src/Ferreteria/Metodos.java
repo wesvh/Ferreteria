@@ -174,10 +174,19 @@ public class Metodos {
     }
    public void borrarProductos() throws SQLException{
         //SCRIPT DE BORRADO
+        start.EstableciendoConexion();
         String delete = "DELETE FROM productos WHERE referencia=?";  //Un ejemplo de borrar un dato en funcion de la referencia
-        PreparedStatement DELETE = start.getConexion().prepareStatement(delete);
+        PreparedStatement DELETE = start.getConexion().prepareStatement(delete);        
+        String referencia;
+        boolean continuar = false;
+        do{
         System.out.println("\nIngrese la referencia del producto a eliminar");
-        String referencia = leer.nextLine();
+        referencia=leer.nextLine();
+        char[] contador = referencia.toCharArray();
+            if (contador.length>5) {
+                System.out.println("Cantidad de caracteres invalida, la referencia tiene 5 caracteres maximo.");
+            } else {continuar=true;}
+        }while(continuar == false);
         DELETE.setString(1,referencia); // Mismo caso de reemplazo
         int rowsDeleted = DELETE.executeUpdate(); //FUNCION DE ELIMINAR
         if (rowsDeleted>0) {
