@@ -8,9 +8,7 @@ public class MainTemporal {
     public static void main(String[] args) throws SQLException {
         Conexion start = new Conexion();
         start.EstableciendoConexion();
-        Metodos run = new Metodos();
-        String nom = "";
-        int e = 0;
+        Metodos run = new Metodos();        
         int opcion = 0;
         Scanner leer =  new Scanner(System.in);
         Scanner numerar = new Scanner(System.in);
