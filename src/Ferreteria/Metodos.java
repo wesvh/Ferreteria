@@ -157,7 +157,7 @@ public class Metodos {
                 String categoria = result.getString(6);
                 System.out.println("\n" + "Nombre del producto: " + nombre + ";\n Codigo de producto: " + ref
                         + ";\n Valor de compra: " + valor_compra + ";\n Valor de venta: " + valor_venta
-                        + ";\n Cantidad: " + cantidad + ";\n Categoria" + categoria + "\n");
+                        + ";\n Cantidad: " + cantidad + ";\n Categoria: " + categoria + "\n");
             }
             start.cerrandoConexion();
         } catch (Exception e) {
