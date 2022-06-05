@@ -9,7 +9,7 @@ import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+//AUTORES : Esteban Villada Henao, Cristian Roa y Giovany Andrés Molina
 public class Conexion {
     Scanner leer =  new Scanner(System.in);
     private Connection conexion;

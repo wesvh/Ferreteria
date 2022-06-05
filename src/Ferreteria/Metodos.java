@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//AUTORES : Esteban Villada Henao, Cristian Roa y Giovany Andrés Molina
 public class Metodos {
    Conexion start = new Conexion();   
    Scanner leer =  new Scanner(System.in);

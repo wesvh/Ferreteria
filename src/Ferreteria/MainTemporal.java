@@ -2,7 +2,7 @@ package Ferreteria;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//AUTORES : Esteban Villada Henao, Cristian Roa y Giovany Andrés Molina
 public class MainTemporal {
     
     public static void main(String[] args) throws SQLException {
