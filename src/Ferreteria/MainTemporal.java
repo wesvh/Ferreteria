@@ -13,7 +13,7 @@ public class MainTemporal {
         int e = 0;
         int opcion = 0;
         Scanner leer =  new Scanner(System.in);
-        Scanner leerx2 = new Scanner(System.in);
+        Scanner numerar = new Scanner(System.in);
         
         String menu = "*FERRETERIA*" + "\n"
                 + "1. Adicionar producto" + "\n"
@@ -25,7 +25,7 @@ public class MainTemporal {
                 + "Opcion: ";
         do {
             System.out.println(menu);
-            opcion = leer.nextInt();
+            opcion = numerar.nextInt();
 
             switch (opcion) {
                 case 1:
@@ -44,9 +44,9 @@ public class MainTemporal {
                     System.out.println("\nEscoja que desea modificar \n"+"1.Nombre\n"+"2.Precio de compra\n"+"3.Precio de venta \n"+"4.Cantidad del producto\n"+
                             "5.Descripcion de categoria\n"+"6.Todas las anteriores");
                     boolean permitir= false;
-                    opcion = leer.nextInt();
+                    opcion = numerar.nextInt();
                     System.out.println("Ingrese la referencia que desea modificar");
-                    String datoo= leerx2.nextLine();                    
+                    String datoo= leer.nextLine();                    
                     ArrayList<String> determinantes = new ArrayList<String>();
                     determinantes = run.consultarReferencia();
                     for(int i = 0; i < determinantes.size(); i++) {
