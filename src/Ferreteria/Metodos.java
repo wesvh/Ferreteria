@@ -18,8 +18,15 @@ public class Metodos {
         int valor_compra,valor_venta,cantidad;
         System.out.println("\nIngrese nombre :");
         nombre=leer.nextLine();
+        boolean continuar = false;
+        do{
         System.out.println("\nIngrese referencia :");
         referencia=leer.nextLine();
+        char[] contador = referencia.toCharArray();
+            if (contador.length>5) {
+                System.out.println("Cantidad de caracteres invalida, la referencia tiene 5 caracteres maximo.");
+            } else {continuar=true;}
+        }while(continuar == false);
         System.out.println("\nIngrese valor de compra:");
         valor_compra = numerar.nextInt();
         System.out.println("\nIngrese valor de venta :");
