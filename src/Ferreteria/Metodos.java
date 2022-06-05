@@ -1,5 +1,4 @@
 package Ferreteria;
-
 import View.Vista;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,15 +22,10 @@ public class Metodos {
     public void agregarProductos() throws SQLException {
         start.EstableciendoConexion();
         String insert = "INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria) VALUES (?,?,?,?,?,?)";
-        String nombre, referencia, categoria;
-        int valor_compra, valor_venta, cantidad;
-        /*
+        String nombre,referencia,categoria,valor_compra,valor_venta,cantidad;        
         System.out.println("\nIngrese nombre :");
-        nombre = leer.nextLine();
-        */
-        
-        nombre = vista.leerDatoString("\nIngrese nombre :");
-        
+        nombre = leer.nextLine();            
+        nombre = vista.leerDatoString("\nIngrese nombre :");        
         boolean continuar = false;
         do {
             /*
@@ -41,25 +35,40 @@ public class Metodos {
             referencia = vista.leerDatoString("\nIngrese referencia:");
             char[] contador = referencia.toCharArray();
             if (contador.length > 5) {
-                System.out.println("Cantidad de caracteres invalida, la referencia tiene 5 caracteres maximo.");
-            } else {
-                continuar = true;
-            }
-        } while (continuar == false);
-        
-        valor_compra = vista.leerDatoInt("\nIngrese valor de compra:");      
-        valor_venta = vista.leerDatoInt("\nIngrese valor de venta:");
-        cantidad = vista.leerDatoInt("\nIngrese cantidad:");
-        categoria = vista.leerDatoString("\nIngrese una aproximacion a la categoria:");
-        
+                System.out.println("Cantidad de caracteres invalida, la referencia tiene 5 caracteres maximo.");}
+          else {continuar=true;}
+        }while(continuar == false);
+        do{
+        System.out.println("\nIngrese valor de compra:");
+        valor_compra = numerar.nextLine();
+            if (isNumeric(valor_compra) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(valor_compra) == false);
+        do{
+        System.out.println("\nIngrese valor de venta :");
+        valor_venta=numerar.nextLine();
+            if (isNumeric(valor_venta) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(valor_venta) == false);
+        do{
+        System.out.println("\nIngrese cantidad :");
+        cantidad =  numerar.nextLine();
+            if (isNumeric(cantidad) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(cantidad) == false);
+        System.out.println("\nIngrese una aproximacion a la categoria :");
+        categoria = leer.nextLine(); 
         PreparedStatement INSERT = start.getConexion().prepareStatement(insert);
         //Se reemplaza cada ? , en orden siendo (x,valor) x el numero del ? a reemplazar por "valor"
-        INSERT.setString(1, nombre);
-        INSERT.setString(2, referencia);
-        INSERT.setInt(3, valor_compra);
-        INSERT.setInt(4, valor_venta);
-        INSERT.setInt(5, cantidad);
-        INSERT.setString(6, categoria);
+        INSERT.setString(1 , nombre); 
+        INSERT.setString(2 , referencia);
+        INSERT.setInt(3 , Integer.parseInt(valor_compra));
+        INSERT.setInt(4 , Integer.parseInt(valor_venta));
+        INSERT.setInt(5 , Integer.parseInt(cantidad));
+        INSERT.setString(6 , categoria);
         int rowsInserted = INSERT.executeUpdate(); //ejecuta el script de SQL
         if (rowsInserted > 0) {
             System.out.println(" Insercion exitosa !\n"); //Devuelve esto si se logro hacer la insercion
@@ -79,67 +88,97 @@ public class Metodos {
                 int rowsUpdated = UPDATE.executeUpdate();
                 break;
             case 2:
-                update = "UPDATE productos SET valor_compra =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
-                UPDATE = start.getConexion().prepareStatement(update);
-                System.out.println("\nINGRESE EL PRECIO DE COMPRA:");
-                int valor_compra = numerar.nextInt();
-                UPDATE.setInt(1, valor_compra); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-                UPDATE.setString(2, referencia);
-                rowsUpdated = UPDATE.executeUpdate();
-                break;
-            case 3:
-                update = "UPDATE productos SET valor_venta =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
-                UPDATE = start.getConexion().prepareStatement(update);
-                System.out.println("\nINGRESE EL PRECIO DE VENTA:");
-                int valor_venta = numerar.nextInt();
-                UPDATE.setInt(1, valor_venta); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-                UPDATE.setString(2, referencia);
-                rowsUpdated = UPDATE.executeUpdate();
-                break;
-            case 4:
-                update = "UPDATE productos SET cantidad =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
-                UPDATE = start.getConexion().prepareStatement(update);
-                System.out.println("\nINGRESE LA CANTIDAD:");
-                int cantidad = numerar.nextInt();
-                UPDATE.setInt(1, cantidad); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-                UPDATE.setString(2, referencia);
-                rowsUpdated = UPDATE.executeUpdate();
-                break;
-            case 5:
-                update = "UPDATE productos SET categoria=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
-                UPDATE = start.getConexion().prepareStatement(update);
-                System.out.println("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
-                String categoria = leer.nextLine();
-                UPDATE.setString(1, categoria); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-                UPDATE.setString(2, referencia);
-                rowsUpdated = UPDATE.executeUpdate();
-                break;
+        update = "UPDATE productos SET valor_compra =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
+        UPDATE = start.getConexion().prepareStatement(update);
+        String valor_compra;
+        do{
+        System.out.println("\nIngrese valor de compra:");
+        valor_compra = numerar.nextLine();
+            if (isNumeric(valor_compra) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(valor_compra) == false);
+        UPDATE.setInt(1, Integer.parseInt(valor_compra)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
+        UPDATE.setString(2,referencia);
+        rowsUpdated = UPDATE.executeUpdate();
+        break;
+             case 3:
+        update = "UPDATE productos SET valor_venta =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
+        UPDATE = start.getConexion().prepareStatement(update);
+        String valor_venta;
+        do{
+        System.out.println("\nIngrese valor de venta :");
+        valor_venta=numerar.nextLine();
+            if (isNumeric(valor_venta) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(valor_venta) == false);
+        UPDATE.setInt(1, Integer.parseInt(valor_venta)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
+        UPDATE.setString(2,referencia);
+        rowsUpdated = UPDATE.executeUpdate();
+        break;
+             case 4:
+        update = "UPDATE productos SET cantidad =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
+        UPDATE = start.getConexion().prepareStatement(update);
+        String cantidad;
+        do{
+        System.out.println("\nIngrese cantidad :");
+        cantidad =  numerar.nextLine();
+            if (isNumeric(cantidad) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(cantidad) == false);
+        UPDATE.setInt(1, Integer.parseInt(cantidad)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
+        UPDATE.setString(2,referencia);
+        rowsUpdated = UPDATE.executeUpdate();
+        break;
+              case 5:
+        update = "UPDATE productos SET categoria=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
+        UPDATE = start.getConexion().prepareStatement(update);
+        System.out.println("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
+        String categoria = leer.nextLine();
+        UPDATE.setString(1, categoria); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
+        UPDATE.setString(2,referencia);
+        rowsUpdated = UPDATE.executeUpdate();
+        break;                 
             case 6:
-                update = "UPDATE productos SET nombre=?, valor_compra =?, valor_venta=?, cantidad=?, categoria=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
-                UPDATE = start.getConexion().prepareStatement(update);
-                System.out.println("\nINGRESE EL NOMBRE:");
-                nombre = leer.nextLine();
-                System.out.println("\nINGRESE EL PRECIO DE COMPRA:");
-                valor_venta = numerar.nextInt();
-                System.out.println("\nINGRESE EL PRECIO DE VENTA:");
-                valor_compra = numerar.nextInt();
-                System.out.println("\nINGRESE LA CANTIDAD:");
-                cantidad = numerar.nextInt();
-                System.out.println("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
-                categoria = leer.nextLine();
-                UPDATE.setString(1, nombre);
-                UPDATE.setInt(2, valor_venta);//SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-                UPDATE.setInt(3, valor_compra);
-                UPDATE.setInt(4, cantidad);
-                UPDATE.setString(5, categoria);
-                UPDATE.setString(6, referencia);
-                rowsUpdated = UPDATE.executeUpdate();
-                break;
-        }//Se enumera la cantidad de actualizaciones
-    }
-
-    public ArrayList<String> consultarReferencia() throws SQLException {
-
+        update = "UPDATE productos SET nombre=?, valor_compra =?, valor_venta=?, cantidad=?, categoria=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
+        UPDATE = start.getConexion().prepareStatement(update);
+        System.out.println("\nINGRESE EL NOMBRE:");
+        nombre = leer.nextLine();
+        do{
+        System.out.println("\nIngrese valor de compra:");
+        valor_compra = numerar.nextLine();
+            if (isNumeric(valor_compra) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(valor_compra) == false);
+        do{
+        System.out.println("\nIngrese valor de venta :");
+        valor_venta=numerar.nextLine();
+            if (isNumeric(valor_venta) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(valor_venta) == false);
+        do{
+        System.out.println("\nIngrese cantidad :");
+        cantidad =  numerar.nextLine();
+            if (isNumeric(cantidad) == false) {
+                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            } 
+        }while(isNumeric(cantidad) == false);
+        System.out.println("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
+        categoria = leer.nextLine();
+        UPDATE.setString(1, nombre);
+        UPDATE.setInt(2, Integer.parseInt(valor_venta));//SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
+        UPDATE.setInt(3, Integer.parseInt(valor_compra));
+        UPDATE.setInt(4, Integer.parseInt(cantidad));
+        UPDATE.setString(5, categoria);
+        UPDATE.setString(6,referencia);
+        rowsUpdated = UPDATE.executeUpdate();
+        break;}//Se enumera la cantidad de actualizaciones
+       }
+   public ArrayList<String> consultarReferencia() throws SQLException{
         start.EstableciendoConexion();
         ArrayList<String> referencias = new ArrayList<String>();
         String select = "SELECT referencia FROM productos"; //Script de la consulta a listar
@@ -225,8 +264,12 @@ public class Metodos {
         } while (continuar == false);
         DELETE.setString(1, referencia); // Mismo caso de reemplazo
         int rowsDeleted = DELETE.executeUpdate(); //FUNCION DE ELIMINAR
-        if (rowsDeleted > 0) {
-            System.out.println("BORRADO EXITOSO\n");
-        }
+        if (rowsDeleted>0) {
+            System.out.println("BORRADO EXITOSO\n");            
+        }}
+    private static boolean isNumeric(String str){
+        return str != null && str.matches("[0-9.]+");
     }
 }
+
+
