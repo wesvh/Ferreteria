@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Metodos {
    Conexion start = new Conexion();   
    Scanner leer =  new Scanner(System.in);
-   Scanner leerx2 = new Scanner (System.in);
+   Scanner numerar = new Scanner(System.in);
    public void agregarProductos() throws SQLException{
        start.EstableciendoConexion();
         String insert = "INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria) VALUES (?,?,?,?,?,?)";
@@ -19,15 +19,15 @@ public class Metodos {
         System.out.println("\nIngrese nombre :");
         nombre=leer.nextLine();
         System.out.println("\nIngrese referencia :");
-        referencia=leerx2.nextLine();
+        referencia=leer.nextLine();
         System.out.println("\nIngrese valor de compra:");
-        valor_compra = leer.nextInt();
+        valor_compra = numerar.nextInt();
         System.out.println("\nIngrese valor de venta :");
-        valor_venta=leerx2.nextInt();
+        valor_venta=numerar.nextInt();
         System.out.println("\nIngrese cantidad :");
-        cantidad =  leer.nextInt();
+        cantidad =  numerar.nextInt();
         System.out.println("\nIngrese una aproximacion a la categoria :");
-        categoria = leerx2.nextLine();        
+        categoria = leer.nextLine(); 
         PreparedStatement INSERT = start.getConexion().prepareStatement(insert);
         //Se reemplaza cada ? , en orden siendo (x,valor) x el numero del ? a reemplazar por "valor"
         INSERT.setString(1 , nombre); 
@@ -57,7 +57,7 @@ public class Metodos {
         update = "UPDATE productos SET valor_compra =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
         UPDATE = start.getConexion().prepareStatement(update);
         System.out.println("\nINGRESE EL PRECIO DE COMPRA:");
-        int valor_compra = leer.nextInt();
+        int valor_compra = numerar.nextInt();
         UPDATE.setInt(1, valor_compra); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
         UPDATE.setString(2,referencia);
         rowsUpdated = UPDATE.executeUpdate();
@@ -66,7 +66,7 @@ public class Metodos {
         update = "UPDATE productos SET valor_venta =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
         UPDATE = start.getConexion().prepareStatement(update);
         System.out.println("\nINGRESE EL PRECIO DE VENTA:");
-        int valor_venta = leer.nextInt();
+        int valor_venta = numerar.nextInt();
         UPDATE.setInt(1, valor_venta); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
         UPDATE.setString(2,referencia);
         rowsUpdated = UPDATE.executeUpdate();
@@ -75,7 +75,7 @@ public class Metodos {
         update = "UPDATE productos SET cantidad =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
         UPDATE = start.getConexion().prepareStatement(update);
         System.out.println("\nINGRESE LA CANTIDAD:");
-        int cantidad = leer.nextInt();
+        int cantidad = numerar.nextInt();
         UPDATE.setInt(1, cantidad); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
         UPDATE.setString(2,referencia);
         rowsUpdated = UPDATE.executeUpdate();
@@ -93,15 +93,15 @@ public class Metodos {
         update = "UPDATE productos SET nombre=?, valor_compra =?, valor_venta=?, cantidad=?, categoria=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
         UPDATE = start.getConexion().prepareStatement(update);
         System.out.println("\nINGRESE EL NOMBRE:");
-        nombre = leerx2.nextLine();
+        nombre = leer.nextLine();
         System.out.println("\nINGRESE EL PRECIO DE COMPRA:");
-        valor_venta = leer.nextInt();
+        valor_venta = numerar.nextInt();
         System.out.println("\nINGRESE EL PRECIO DE VENTA:");
-        valor_compra = leerx2.nextInt();
+        valor_compra = numerar.nextInt();
         System.out.println("\nINGRESE LA CANTIDAD:");
-        cantidad = leer.nextInt();
+        cantidad = numerar.nextInt();
         System.out.println("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
-        categoria = leerx2.nextLine();
+        categoria = leer.nextLine();
         UPDATE.setString(1, nombre);
         UPDATE.setInt(2, valor_venta);//SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
         UPDATE.setInt(3, valor_compra);
@@ -166,14 +166,14 @@ public class Metodos {
 
     }
    public void borrarProductos() throws SQLException{
-            start.EstableciendoConexion();
-         String update = "UPDATE productos SET valor_compra =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
+        start.EstableciendoConexion();
+        String update = "UPDATE productos SET valor_compra =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
         PreparedStatement UPDATE = start.getConexion().prepareStatement(update);
         UPDATE.setInt(1, 50000); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
         UPDATE.setString(2,"R0003");
         int rowsUpdated = UPDATE.executeUpdate(); //Se enumera la cantidad de actualizaciones
         if (rowsUpdated > 0) {
-            System.out.println("EL REGISTRO SE ACTUALIZO CORRECTAMENTE"); //Se imprime si hay mas de 1 actualizacion.
+        System.out.println("EL REGISTRO SE ACTUALIZO CORRECTAMENTE"); //Se imprime si hay mas de 1 actualizacion.
         //SCRIPT DE BORRADO
         String delete = "DELETE FROM productos WHERE referencia=?";  //Un ejemplo de borrar un dato en funcion de la referencia
         PreparedStatement DELETE = start.getConexion().prepareStatement(delete);
