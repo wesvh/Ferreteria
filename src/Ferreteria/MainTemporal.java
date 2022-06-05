@@ -42,7 +42,7 @@ public class MainTemporal {
                     break;
                 case 5:
                     System.out.println("\nEscoja que desea modificar \n"+"1.Nombre\n"+"2.Precio de compra\n"+"3.Precio de venta \n"+"4.Cantidad del producto\n"+
-                            "5.Descripcion de categoria\n"+"6.Todas las anteriores");
+                            "5.Descripcion de categoria\n"+"6.Todas las anteriores\n");
                     boolean permitir= false;
                     opcion = numerar.nextInt();
                     System.out.println("Ingrese la referencia que desea modificar");

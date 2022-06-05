@@ -38,7 +38,7 @@ public class Metodos {
         INSERT.setString(6 , categoria);
         int rowsInserted = INSERT.executeUpdate(); //ejecuta el script de SQL
         if ( rowsInserted > 0) {
-        System.out.println (" Insercion exitosa !"); //Devuelve esto si se logro hacer la insercion
+        System.out.println (" Insercion exitosa !\n"); //Devuelve esto si se logro hacer la insercion
         }
     }
    public void modificarProductos(int opcion, String referencia) throws SQLException{        
@@ -135,7 +135,7 @@ public class Metodos {
         int valor_venta= result.getInt(4);
         int cantidad = result.getInt(5);
         String categoria = result.getString(6);
-        System.out.println("Nombre del producto: " + nombre + " REFERENCIA: " + referencia+" precio de compra: " +valor_compra+" precio de venta: " +valor_venta+ " CANTIDAD: "+cantidad + " Categoria: " +categoria);} }
+        System.out.println("Nombre del producto: " + nombre + "\n REFERENCIA: " + referencia+"\n precio de compra: " +valor_compra+"\n precio de venta: " +valor_venta+ "\n CANTIDAD: "+cantidad + "\n Categoria: " +categoria);} }
    public void consultarProductos() throws SQLException {
         PreparedStatement SELECT;
         ResultSet result;
@@ -155,9 +155,9 @@ public class Metodos {
                 int valor_venta = result.getInt(4);
                 int cantidad = result.getInt(5);
                 String categoria = result.getString(6);
-                System.out.println("\n" + "Nombre del producto: " + nombre + "; Codigo de producto: " + ref
-                        + "; Valor de compra: " + valor_compra + "; Valor de venta: " + valor_venta
-                        + "; Cantidad: " + cantidad + "; Categoria" + categoria + "\n");
+                System.out.println("\n" + "Nombre del producto: " + nombre + ";\n Codigo de producto: " + ref
+                        + ";\n Valor de compra: " + valor_compra + ";\n Valor de venta: " + valor_venta
+                        + ";\n Cantidad: " + cantidad + ";\n Categoria" + categoria + "\n");
             }
             start.cerrandoConexion();
         } catch (Exception e) {
@@ -166,20 +166,14 @@ public class Metodos {
 
     }
    public void borrarProductos() throws SQLException{
-        start.EstableciendoConexion();
-        String update = "UPDATE productos SET valor_compra =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
-        PreparedStatement UPDATE = start.getConexion().prepareStatement(update);
-        UPDATE.setInt(1, 50000); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-        UPDATE.setString(2,"R0003");
-        int rowsUpdated = UPDATE.executeUpdate(); //Se enumera la cantidad de actualizaciones
-        if (rowsUpdated > 0) {
-        System.out.println("EL REGISTRO SE ACTUALIZO CORRECTAMENTE"); //Se imprime si hay mas de 1 actualizacion.
         //SCRIPT DE BORRADO
         String delete = "DELETE FROM productos WHERE referencia=?";  //Un ejemplo de borrar un dato en funcion de la referencia
         PreparedStatement DELETE = start.getConexion().prepareStatement(delete);
-        DELETE.setString(1,"R0003"); // Mismo caso de reemplazo
+        System.out.println("\nIngrese la referencia del producto a eliminar");
+        String referencia = leer.nextLine();
+        DELETE.setString(1,referencia); // Mismo caso de reemplazo
         int rowsDeleted = DELETE.executeUpdate(); //FUNCION DE ELIMINAR
         if (rowsDeleted>0) {
-            System.out.println("BORRADO EXITOSO");            
+            System.out.println("BORRADO EXITOSO\n");            
         }}}
-}
+
