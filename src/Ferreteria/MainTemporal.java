@@ -1,5 +1,6 @@
 package Ferreteria;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainTemporal {
@@ -12,6 +13,7 @@ public class MainTemporal {
         int e = 0;
         int opcion = 0;
         Scanner leer =  new Scanner(System.in);
+        Scanner leerx2 = new Scanner(System.in);
         
         String menu = "*FERRETERIA*" + "\n"
                 + "1. Adicionar producto" + "\n"
@@ -30,7 +32,7 @@ public class MainTemporal {
                     run.agregarProductos();
                     break;
                 case 2:
-                    run.consultarProductos();
+                    run.listarProductos();
                     break;
                 case 3:
                     run.consultarProductos();
@@ -39,7 +41,22 @@ public class MainTemporal {
                     run.borrarProductos();
                     break;
                 case 5:
-                    run.modificarProductos();
+                    System.out.println("\nEscoja que desea modificar \n"+"1.Nombre\n"+"2.Precio de compra\n"+"3.Precio de venta \n"+"4.Cantidad del producto\n"+
+                            "5.Descripcion de categoria\n"+"6.Todas las anteriores");
+                    boolean permitir= false;
+                    opcion = leer.nextInt();
+                    System.out.println("Ingrese la referencia que desea modificar");
+                    String datoo= leerx2.nextLine();                    
+                    ArrayList<String> determinantes = new ArrayList<String>();
+                    determinantes = run.consultarReferencia();
+                    for(int i = 0; i < determinantes.size(); i++) {
+                        if (determinantes.get(i).equals(datoo)) {
+                            permitir=true;
+                        }};
+                        if (permitir) {
+                        run.modificarProductos(opcion, datoo);
+                    }else {System.out.println("INGRESO UNA REFERENCIA QUE NO EXISTE.\n Intentelo de nuevo");}
+                    opcion=1;
                     break;
                 case 6:
                     start.cerrandoConexion();
@@ -48,6 +65,8 @@ public class MainTemporal {
                     System.out.println("Error: escogio una opción inválida");
             }
         } while (opcion != 6);
+        
+        
 
      
         }
