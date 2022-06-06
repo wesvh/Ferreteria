@@ -11,3 +11,4 @@ INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,cate
 VALUES ("tubo de construccion","R0001",6500,8500,100,"pvc"), ("Tornillo", "T400", 300, 320, 80, "Hexagonal"), ("Alicate","A3100", 7000, 8000, 20, "8 pulgadas"), 
 		("Martillo", "M2000", 10000, 10700, 15, "Carpintería"), ("Atornillador", "R0002", 4600, 5000, 18, "Estrella"),
 		("Pinzas", "RS200", 9000, 9300, 16, "Mecánicas");
+#AUTORES:Esteban Villada Henao,Cristian Camilo Roa Rojas y Giovany Andrés Molina
