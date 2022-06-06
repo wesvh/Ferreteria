@@ -1,6 +1,5 @@
 package Ferreteria;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Scanner;
 //AUTORES : Esteban Villada Henao, Cristian Roa y Giovany Andrés Molina
 public class MainTemporal {
@@ -39,21 +38,8 @@ public class MainTemporal {
                     run.borrarProductos();
                     break;
                 case 5:
-                    System.out.println("\nEscoja que desea modificar \n"+"1.Nombre\n"+"2.Precio de compra\n"+"3.Precio de venta \n"+"4.Cantidad del producto\n"+
-                            "5.Descripcion de categoria\n"+"6.Todas las anteriores\n");
-                    boolean permitir= false;
-                    opcion = numerar.nextInt();
-                    System.out.println("Ingrese la referencia que desea modificar");
-                    String datoo= leer.nextLine();                    
-                    ArrayList<String> determinantes = new ArrayList<String>();
-                    determinantes = run.consultarReferencia();
-                    for(int i = 0; i < determinantes.size(); i++) {
-                        if (determinantes.get(i).equals(datoo)) {
-                            permitir=true;
-                        }};
-                        if (permitir) {
-                        run.modificarProductos(opcion, datoo);
-                    }else {System.out.println("INGRESO UNA REFERENCIA QUE NO EXISTE.\n Intentelo de nuevo");}
+                    if (run.permitirConsultar()) {
+                        run.modificarProductos();}
                     opcion=1;
                     break;
                 case 6:
