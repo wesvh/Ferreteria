@@ -243,6 +243,7 @@ public class Metodos {
                         + ";\n Valor de venta: " + valor_venta
                         + ";\n Cantidad: " + cantidad
                         + ";\n Categoria: " + categoria + "\n";
+                System.out.println(rta);
             }
             start.cerrandoConexion();
         } catch (Exception e) {

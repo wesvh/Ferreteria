@@ -32,7 +32,9 @@ public class MainTemporal {
                     run.listarProductos();
                     break;
                 case 3:
-                    run.consultarProductos();
+                    if (run.permitirConsultar()) {
+                        run.consultarProductos();
+                    }
                     break;
                 case 4:
                     run.borrarProductos();
