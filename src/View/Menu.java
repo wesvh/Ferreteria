@@ -8,10 +8,13 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Menu extends javax.swing.JFrame {
- Metodos run = new Metodos(); 
+
+    Metodos run = new Metodos();
+
     public Menu() {
         initComponents();
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -135,52 +138,57 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarActionPerformed
-     
+
         try {
-         getPanelresultados().setText(run.listarProductos());
-                  
-     } catch (SQLException ex) {
-         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-     }
-     
+            getPanelresultados().setText(run.listarProductos());
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }//GEN-LAST:event_botonListarActionPerformed
 
     private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
-     try {
-         run.agregarProductos();
-         getPanelresultados().setText("¡¡INSERCION EXITOSA!!");
-     } catch (SQLException ex) {
-         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-     }
+        try {
+            run.agregarProductos();
+            getPanelresultados().setText("¡¡INSERCION EXITOSA!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonInsertarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-     try {
-         if (run.permitirConsultar()) {
-             run.modificarProductos();             
-             getPanelresultados().setText("¡¡MODIFICACION EXITOSA!!");
-         }
-     } catch (SQLException ex) {
-         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-     }
+        try {
+            if (run.permitirConsultar()) {
+                run.modificarProductos();
+                getPanelresultados().setText("¡¡MODIFICACION EXITOSA!!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarActionPerformed
-        // TODO add your handling code here:
+        try {
+            if (run.permitirConsultar()) {
+            getPanelresultados().setText(run.consultarProductos());}
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonConsultarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-     try {
-         run.borrarProductos();         
-         getPanelresultados().setText("¡¡BORRADO EXITOSO!!");
-     } catch (SQLException ex) {
-         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-     }
+        try {
+            run.borrarProductos();
+            getPanelresultados().setText("¡¡BORRADO EXITOSO!!");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
         System.exit(0);
-        
+
     }//GEN-LAST:event_botonSalirActionPerformed
 
     public static void main(String args[]) {
@@ -229,12 +237,11 @@ public class Menu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public JTextPane getPanelresultados() {
-		return PanelResultados;
-	}
-    
+        return PanelResultados;
+    }
+
     public void mostrarInformacion(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje);
-	}
+    }
 
- 
 }
