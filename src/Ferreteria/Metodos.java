@@ -35,24 +35,9 @@ public class Metodos {
                 continuar = true;
             }
         } while (continuar == false);
-        do {
-            valor_compra = leerDato(upPrice);
-            if (isNumeric(valor_compra) == false) {
-                mostrarInformacion(advertenciaError);
-            }
-        } while (isNumeric(valor_compra) == false);
-        do {
-            valor_venta = leerDato(upSell);
-            if (isNumeric(valor_venta) == false) {
-                mostrarInformacion(advertenciaError);
-            }
-        } while (isNumeric(valor_venta) == false);
-        do {
-            cantidad = leerDato(upAmount);
-            if (isNumeric(cantidad) == false) {
-                mostrarInformacion(advertenciaError);
-            }
-        } while (isNumeric(cantidad) == false);
+        valor_compra=evaluadorNumerico(1);
+        valor_venta=evaluadorNumerico(2);
+        cantidad=evaluadorNumerico(3);
         categoria = leerDato(upType);
         PreparedStatement INSERT = start.getConexion().prepareStatement(insert);
         //Se reemplaza cada ? , en orden siendo (x,valor) x el numero del ? a reemplazar por "valor"
@@ -91,14 +76,8 @@ public class Metodos {
             case 2:
                 update = "UPDATE productos SET valor_compra =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
                 UPDATE = start.getConexion().prepareStatement(update);
-                String valor_compra;
-                do {
-                    valor_compra = leerDato(upPrice);
-                    if (isNumeric(valor_compra) == false) {
-                        System.out.println(advertenciaError);
-                        mostrarInformacion(advertenciaError);
-                    }
-                } while (isNumeric(valor_compra) == false);
+                String valor_compra;                
+                valor_compra=evaluadorNumerico(1);
                 UPDATE.setInt(1, Integer.parseInt(valor_compra)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
                 UPDATE.setString(2, referenciaComprobar);
                 rowsUpdated = UPDATE.executeUpdate();
@@ -107,13 +86,7 @@ public class Metodos {
                 update = "UPDATE productos SET valor_venta =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
                 UPDATE = start.getConexion().prepareStatement(update);
                 String valor_venta;
-                do {
-                    valor_venta = leerDato(upSell);
-                    if (isNumeric(valor_venta) == false) {
-                        System.out.println(advertenciaError);
-                        mostrarInformacion(advertenciaError);
-                    }
-                } while (isNumeric(valor_venta) == false);
+                valor_venta=evaluadorNumerico(2);
                 UPDATE.setInt(1, Integer.parseInt(valor_venta)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
                 UPDATE.setString(2, referenciaComprobar);
                 rowsUpdated = UPDATE.executeUpdate();
@@ -122,13 +95,7 @@ public class Metodos {
                 update = "UPDATE productos SET cantidad =? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
                 UPDATE = start.getConexion().prepareStatement(update);
                 String cantidad;
-                do {
-                    cantidad = leerDato(upAmount);
-                    if (isNumeric(cantidad) == false) {
-                        System.out.println(advertenciaError);
-                        mostrarInformacion(advertenciaError);
-                    }
-                } while (isNumeric(cantidad) == false);
+                cantidad = evaluadorNumerico(3);
                 UPDATE.setInt(1, Integer.parseInt(cantidad)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
                 UPDATE.setString(2, referenciaComprobar);
                 rowsUpdated = UPDATE.executeUpdate();
@@ -145,27 +112,9 @@ public class Metodos {
                 update = "UPDATE productos SET nombre=?, valor_compra =?, valor_venta=?, cantidad=?, categoria=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
                 UPDATE = start.getConexion().prepareStatement(update);
                 nombre = leerDato(upName);
-                do {
-                    valor_compra = leerDato(upPrice);
-                    if (isNumeric(valor_compra) == false) {
-                        System.out.println(advertenciaError);
-                        mostrarInformacion(advertenciaError);
-                    }
-                } while (isNumeric(valor_compra) == false);
-                do {
-                    valor_venta = leerDato(upSell);
-                    if (isNumeric(valor_venta) == false) {
-                        System.out.println(advertenciaError);
-                        mostrarInformacion(advertenciaError);
-                    }
-                } while (isNumeric(valor_venta) == false);
-                do {
-                    cantidad = leerDato(upAmount);
-                    if (isNumeric(cantidad) == false) {
-                        System.out.println(advertenciaError);
-                        mostrarInformacion(advertenciaError);
-                    }
-                } while (isNumeric(cantidad) == false);
+                valor_compra=evaluadorNumerico(1);
+                valor_venta=evaluadorNumerico(2);
+                cantidad=evaluadorNumerico(3);
                 categoria = leerDato(upType);
                 UPDATE.setString(1, nombre);
                 UPDATE.setInt(2, Integer.parseInt(valor_venta));//SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
@@ -199,7 +148,7 @@ public class Metodos {
     public String listarProductos() throws SQLException {
         ArrayList<String> temporal = new ArrayList<String>();
         start.EstableciendoConexion();
-        String select = "SELECT * FROM productos"; //Script de la consulta a listar
+        String select = "SELECT * FROM productos ORDER BY cantidad ASC"; //Script de la consulta a listar
         Statement SELECT = start.getConexion().createStatement();
         ResultSet result = SELECT.executeQuery(select); //Se le otorga la variable de select
         while (result.next()) {
@@ -304,4 +253,30 @@ public class Metodos {
         } while (permitir == false);
         return permitir;
     }
+    public String evaluadorNumerico(int i){
+        String valor ="";
+        switch (i){
+            case 1:do{
+            valor = leerDato(upPrice);
+            if (isNumeric(valor) == false) {
+                mostrarInformacion(advertenciaError);
+            }
+        } while (isNumeric(valor) == false);
+            break;
+            case 2:do{
+            valor = leerDato(upSell);
+            if (isNumeric(valor) == false) {
+                mostrarInformacion(advertenciaError);
+            }
+        } while (isNumeric(valor) == false);
+            break;
+            case 3:do{
+            valor = leerDato(upAmount);
+            if (isNumeric(valor) == false) {
+                mostrarInformacion(advertenciaError);
+            }
+        } while (isNumeric(valor) == false);
+            break;
+        }
+    return valor;}
 }
