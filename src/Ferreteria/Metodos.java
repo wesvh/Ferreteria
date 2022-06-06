@@ -191,7 +191,8 @@ public class Metodos {
         return referencias;
     }
 
-    public void listarProductos() throws SQLException {
+    public String listarProductos() throws SQLException {
+        ArrayList<String> temporal = new ArrayList<String>();
         start.EstableciendoConexion();
         String select = "SELECT * FROM productos"; //Script de la consulta a listar
         Statement SELECT = start.getConexion().createStatement();
@@ -204,7 +205,14 @@ public class Metodos {
             int cantidad = result.getInt(5);
             String categoria = result.getString(6);
             System.out.println("\n Nombre del producto: " + nombre + "\n REFERENCIA: " + referencia + "\n precio de compra: " + valor_compra + "\n precio de venta: " + valor_venta + "\n CANTIDAD: " + cantidad + "\n Categoria: " + categoria + "\n");
+            temporal.add("\n Nombre del producto: " + nombre + "\n REFERENCIA: " + referencia + "\n precio de compra: " + valor_compra + "\n precio de venta: " + valor_venta + "\n CANTIDAD: " + cantidad + "\n Categoria: " + categoria + "\n");
+            
         }
+        String rta= "";
+        for (int j = 0; j < temporal.size(); j++) {
+           rta += "\n"+temporal.get(j);
+        }
+    return rta;
     }
 
     public void consultarProductos() throws SQLException {

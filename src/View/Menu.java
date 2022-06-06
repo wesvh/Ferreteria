@@ -1,7 +1,16 @@
 package View;
 
-public class Menu extends javax.swing.JFrame {
+import Ferreteria.Controller;
+import javax.swing.JButton;
+import javax.swing.JTextPane;
+import Ferreteria.Metodos;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
 
+public class Menu extends javax.swing.JFrame {
+ Metodos run = new Metodos();  
     public Menu() {
         initComponents();
     }
@@ -10,39 +19,109 @@ public class Menu extends javax.swing.JFrame {
     private void initComponents() {
 
         opcion1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        PanelResultados = new javax.swing.JTextPane();
+        BotonOpcion2 = new javax.swing.JButton();
+        BotonOpcion3 = new javax.swing.JButton();
+        BotonOpcion5 = new javax.swing.JButton();
+        BotonOpcion4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        opcion1.setText("Prueba 1");
+        opcion1.setText("Listar Elementos");
         opcion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opcion1ActionPerformed(evt);
             }
         });
 
+        jScrollPane1.setViewportView(PanelResultados);
+
+        BotonOpcion2.setText("Insertar Elementos");
+        BotonOpcion2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonOpcion2ActionPerformed(evt);
+            }
+        });
+
+        BotonOpcion3.setText("Modificar");
+
+        BotonOpcion5.setText("Eliminar elementos");
+
+        BotonOpcion4.setText("Buscar");
+
+        jLabel2.setText("SALIDA DE DATOS");
+
+        jLabel1.setText("FERRECOL S.A.S");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(145, 145, 145)
-                .addComponent(opcion1)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(opcion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonOpcion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonOpcion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonOpcion5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BotonOpcion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(298, 298, 298)
+                        .addComponent(jLabel2)))
+                .addContainerGap(111, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(385, 385, 385)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(opcion1)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel2)
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(opcion1)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotonOpcion2)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotonOpcion3)
+                        .addGap(18, 18, 18)
+                        .addComponent(BotonOpcion4)
+                        .addGap(223, 223, 223)
+                        .addComponent(BotonOpcion5)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void opcion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion1ActionPerformed
-        
+     
+        try {
+         getPanelresultados().setText(run.listarProductos());
+                  
+     } catch (SQLException ex) {
+         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+     }
+     
     }//GEN-LAST:event_opcion1ActionPerformed
+
+    private void BotonOpcion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOpcion2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonOpcion2ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -77,6 +156,30 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonOpcion2;
+    private javax.swing.JButton BotonOpcion3;
+    private javax.swing.JButton BotonOpcion4;
+    private javax.swing.JButton BotonOpcion5;
+    private javax.swing.JTextPane PanelResultados;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton opcion1;
     // End of variables declaration//GEN-END:variables
+
+    public JTextPane getPanelresultados() {
+		return PanelResultados;
+	}
+    
+    public JButton getBotonOpcion1() {
+		return opcion1;
+	}
+    
+    public void inicializarComponentes() {
+                opcion1.setActionCommand("OPCION1");
+    }
+    
+    /*public void addActionListener(Controller aThis) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }*/
 }
