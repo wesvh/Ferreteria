@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Menu extends javax.swing.JFrame {
  Metodos run = new Metodos();  
@@ -18,53 +19,53 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        opcion1 = new javax.swing.JButton();
+        botonListar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         PanelResultados = new javax.swing.JTextPane();
-        BotonOpcion2 = new javax.swing.JButton();
-        BotonOpcion3 = new javax.swing.JButton();
-        BotonOpcion5 = new javax.swing.JButton();
-        BotonOpcion4 = new javax.swing.JButton();
+        botonInsertar = new javax.swing.JButton();
+        botonModificar = new javax.swing.JButton();
+        botonEliminar = new javax.swing.JButton();
+        botonConsultar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        opcion1.setText("Listar Elementos");
-        opcion1.addActionListener(new java.awt.event.ActionListener() {
+        botonListar.setText("Listar Elementos");
+        botonListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                opcion1ActionPerformed(evt);
+                botonListarActionPerformed(evt);
             }
         });
 
         PanelResultados.setEditable(false);
         jScrollPane1.setViewportView(PanelResultados);
 
-        BotonOpcion2.setText("Insertar Elementos");
-        BotonOpcion2.addActionListener(new java.awt.event.ActionListener() {
+        botonInsertar.setText("Insertar Elementos");
+        botonInsertar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonOpcion2ActionPerformed(evt);
+                botonInsertarActionPerformed(evt);
             }
         });
 
-        BotonOpcion3.setText("Modificar");
-        BotonOpcion3.addActionListener(new java.awt.event.ActionListener() {
+        botonModificar.setText("Modificar");
+        botonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonOpcion3ActionPerformed(evt);
+                botonModificarActionPerformed(evt);
             }
         });
 
-        BotonOpcion5.setText("Eliminar elementos");
-        BotonOpcion5.addActionListener(new java.awt.event.ActionListener() {
+        botonEliminar.setText("Eliminar elementos");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonOpcion5ActionPerformed(evt);
+                botonEliminarActionPerformed(evt);
             }
         });
 
-        BotonOpcion4.setText("Buscar");
-        BotonOpcion4.addActionListener(new java.awt.event.ActionListener() {
+        botonConsultar.setText("Buscar");
+        botonConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonOpcion4ActionPerformed(evt);
+                botonConsultarActionPerformed(evt);
             }
         });
 
@@ -79,11 +80,11 @@ public class Menu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(opcion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonOpcion2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonOpcion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonOpcion5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BotonOpcion4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botonListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botonConsultar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
@@ -109,22 +110,22 @@ public class Menu extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(opcion1)
+                        .addComponent(botonListar)
                         .addGap(18, 18, 18)
-                        .addComponent(BotonOpcion2)
+                        .addComponent(botonInsertar)
                         .addGap(18, 18, 18)
-                        .addComponent(BotonOpcion3)
+                        .addComponent(botonModificar)
                         .addGap(18, 18, 18)
-                        .addComponent(BotonOpcion4)
+                        .addComponent(botonConsultar)
                         .addGap(223, 223, 223)
-                        .addComponent(BotonOpcion5)))
+                        .addComponent(botonEliminar)))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void opcion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcion1ActionPerformed
+    private void botonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarActionPerformed
      
         try {
          getPanelresultados().setText(run.listarProductos());
@@ -133,23 +134,28 @@ public class Menu extends javax.swing.JFrame {
          Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
      }
      
-    }//GEN-LAST:event_opcion1ActionPerformed
+    }//GEN-LAST:event_botonListarActionPerformed
 
-    private void BotonOpcion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOpcion2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonOpcion2ActionPerformed
+    private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
+     try {
+         run.agregarProductos();
+         getPanelresultados().setText("¡¡INSERCION EXITOSA!!");
+     } catch (SQLException ex) {
+         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+     }
+    }//GEN-LAST:event_botonInsertarActionPerformed
 
-    private void BotonOpcion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOpcion3ActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BotonOpcion3ActionPerformed
+    }//GEN-LAST:event_botonModificarActionPerformed
 
-    private void BotonOpcion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOpcion4ActionPerformed
+    private void botonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BotonOpcion4ActionPerformed
+    }//GEN-LAST:event_botonConsultarActionPerformed
 
-    private void BotonOpcion5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOpcion5ActionPerformed
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BotonOpcion5ActionPerformed
+    }//GEN-LAST:event_botonEliminarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -184,19 +190,24 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonOpcion2;
-    private javax.swing.JButton BotonOpcion3;
-    private javax.swing.JButton BotonOpcion4;
-    private javax.swing.JButton BotonOpcion5;
     private javax.swing.JTextPane PanelResultados;
+    private javax.swing.JButton botonConsultar;
+    private javax.swing.JButton botonEliminar;
+    private javax.swing.JButton botonInsertar;
+    private javax.swing.JButton botonListar;
+    private javax.swing.JButton botonModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton opcion1;
     // End of variables declaration//GEN-END:variables
 
     public JTextPane getPanelresultados() {
 		return PanelResultados;
 	}
+    
+    public void mostrarInformacion(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje);
+	}
+
  
 }

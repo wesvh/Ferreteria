@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 //AUTORES : Esteban Villada Henao, Cristian Camilo Roa Rojas y Giovany Andrés Molina
 public class Metodos {
@@ -23,42 +24,34 @@ public class Metodos {
         start.EstableciendoConexion();
         String insert = "INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria) VALUES (?,?,?,?,?,?)";
         String nombre,referencia,categoria,valor_compra,valor_venta,cantidad;
-        nombre = vista.leerDatoString("\nIngrese nombre :");        
+        nombre = leerDato("Ingrese el Nombre");        
         boolean continuar = false;
-        do {
-            /*
-            System.out.println("\nIngrese referencia :");
-            referencia = leer.nextLine();
-            */
-            referencia = vista.leerDatoString("\nIngrese referencia:");
+        do {         
+            referencia = leerDato("Ingrese la referencia");
             char[] contador = referencia.toCharArray();
             if (contador.length > 5) {
-                System.out.println("Cantidad de caracteres invalida, la referencia tiene 5 caracteres maximo.");}
+                mostrarInformacion("REFERENCIA INVALIDA, LOS CARACTERES MAXIMOS SON 5");}
           else {continuar=true;}
         }while(continuar == false);
         do{
-        System.out.println("\nIngrese valor de compra:");
-        valor_compra = numerar.nextLine();
+        valor_compra = leerDato("Ingrese Valor de Compra");
             if (isNumeric(valor_compra) == false) {
-                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+                mostrarInformacion("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(valor_compra) == false);
         do{
-        System.out.println("\nIngrese valor de venta :");
-        valor_venta=numerar.nextLine();
+        valor_venta=leerDato("Ingrese Valor de Venta");
             if (isNumeric(valor_venta) == false) {
-                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+                mostrarInformacion("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(valor_venta) == false);
         do{
-        System.out.println("\nIngrese cantidad :");
-        cantidad =  numerar.nextLine();
+        cantidad =  leerDato("Ingrese la Cantidad");
             if (isNumeric(cantidad) == false) {
-                System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+                mostrarInformacion("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(cantidad) == false);
-        System.out.println("\nIngrese una aproximacion a la categoria :");
-        categoria = leer.nextLine(); 
+        categoria = leerDato("Ingrese una Aproximacion a la Categoria"); 
         PreparedStatement INSERT = start.getConexion().prepareStatement(insert);
         //Se reemplaza cada ? , en orden siendo (x,valor) x el numero del ? a reemplazar por "valor"
         INSERT.setString(1 , nombre); 
@@ -69,7 +62,7 @@ public class Metodos {
         INSERT.setString(6 , categoria);
         int rowsInserted = INSERT.executeUpdate(); //ejecuta el script de SQL
         if (rowsInserted > 0) {
-            System.out.println(" Insercion exitosa !\n"); //Devuelve esto si se logro hacer la insercion
+            mostrarInformacion("Insercion Exitosa"); //Devuelve esto si se logro hacer la insercion
         }
     }
 
@@ -176,7 +169,7 @@ public class Metodos {
         rowsUpdated = UPDATE.executeUpdate();
         break;}//Se enumera la cantidad de actualizaciones
        }
-   public ArrayList<String> consultarReferencia() throws SQLException{
+    public ArrayList<String> consultarReferencia() throws SQLException{
         start.EstableciendoConexion();
         ArrayList<String> referencias = new ArrayList<String>();
         String select = "SELECT referencia FROM productos"; //Script de la consulta a listar
@@ -276,6 +269,20 @@ public class Metodos {
     private static boolean isNumeric(String str){
         return str != null && str.matches("[0-9.]+");
     }
+    
+        public int leerNumero(String mensaje) {
+		String aux = JOptionPane.showInputDialog(mensaje);
+		int dato = Integer.parseInt(aux);
+		return dato;
+	}
+        public String leerDato(String mensaje) {
+		String aux = JOptionPane.showInputDialog(mensaje);
+		return aux;
+	}
+        public void mostrarInformacion(String mensaje) {
+		JOptionPane.showMessageDialog(null, mensaje);
+	}
+        
 }
 
 
