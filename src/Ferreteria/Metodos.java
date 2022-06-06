@@ -22,9 +22,7 @@ public class Metodos {
     public void agregarProductos() throws SQLException {
         start.EstableciendoConexion();
         String insert = "INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria) VALUES (?,?,?,?,?,?)";
-        String nombre,referencia,categoria,valor_compra,valor_venta,cantidad;        
-        System.out.println("\nIngrese nombre :");
-        nombre = leer.nextLine();            
+        String nombre,referencia,categoria,valor_compra,valor_venta,cantidad;
         nombre = vista.leerDatoString("\nIngrese nombre :");        
         boolean continuar = false;
         do {
