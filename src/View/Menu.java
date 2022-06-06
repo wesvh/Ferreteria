@@ -1,6 +1,6 @@
 package View;
 
-import Ferreteria.Controller;
+
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import Ferreteria.Metodos;
@@ -47,10 +47,25 @@ public class Menu extends javax.swing.JFrame {
         });
 
         BotonOpcion3.setText("Modificar");
+        BotonOpcion3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonOpcion3ActionPerformed(evt);
+            }
+        });
 
         BotonOpcion5.setText("Eliminar elementos");
+        BotonOpcion5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonOpcion5ActionPerformed(evt);
+            }
+        });
 
         BotonOpcion4.setText("Buscar");
+        BotonOpcion4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonOpcion4ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("SALIDA DE DATOS");
 
@@ -123,6 +138,18 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonOpcion2ActionPerformed
 
+    private void BotonOpcion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOpcion3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonOpcion3ActionPerformed
+
+    private void BotonOpcion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOpcion4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonOpcion4ActionPerformed
+
+    private void BotonOpcion5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonOpcion5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonOpcion5ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -170,16 +197,5 @@ public class Menu extends javax.swing.JFrame {
     public JTextPane getPanelresultados() {
 		return PanelResultados;
 	}
-    
-    public JButton getBotonOpcion1() {
-		return opcion1;
-	}
-    
-    public void inicializarComponentes() {
-                opcion1.setActionCommand("OPCION1");
-    }
-    
-    /*public void addActionListener(Controller aThis) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }*/
+ 
 }
