@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
+//AUTORES : Esteban Villada Henao, Cristian Camilo Roa Rojas y Giovany Andrés Molina
 public class Menu extends javax.swing.JFrame {
 
     Metodos run = new Metodos();
@@ -16,7 +16,6 @@ public class Menu extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         botonListar = new javax.swing.JButton();
@@ -135,10 +134,9 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
-    private void botonListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarActionPerformed
-
+    private void botonListarActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             getPanelresultados().setText(run.listarProductos());
 
@@ -146,18 +144,18 @@ public class Menu extends javax.swing.JFrame {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_botonListarActionPerformed
+    }
 
-    private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
+    private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             run.agregarProductos();
             getPanelresultados().setText("¡¡INSERCION EXITOSA!!");
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_botonInsertarActionPerformed
+    }
 
-    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
+    private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             if (run.permitirConsultar()) {
                 run.modificarProductos();
@@ -166,37 +164,31 @@ public class Menu extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_botonModificarActionPerformed
+    }
 
-    private void botonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarActionPerformed
+    private void botonConsultarActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             if (run.permitirConsultar()) {
             getPanelresultados().setText(run.consultarProductos());}
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_botonConsultarActionPerformed
+    }
 
-    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {
         try {
             run.borrarProductos();
             getPanelresultados().setText("¡¡BORRADO EXITOSO!!");
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_botonEliminarActionPerformed
-
-    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+    }
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
 
-    }//GEN-LAST:event_botonSalirActionPerformed
+    }
 
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -213,17 +205,12 @@ public class Menu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Menu().setVisible(true);
             }
         });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane PanelResultados;
     private javax.swing.JButton botonConsultar;
     private javax.swing.JButton botonEliminar;
@@ -234,8 +221,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    // End of variables declaration//GEN-END:variables
-
     public JTextPane getPanelresultados() {
         return PanelResultados;
     }
