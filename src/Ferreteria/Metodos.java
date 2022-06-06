@@ -15,6 +15,7 @@ public class Metodos {
     Conexion start = new Conexion();
     Scanner leer = new Scanner(System.in);
     Scanner numerar = new Scanner(System.in);
+    String referenciaComprobar;
 
     public Metodos() {
         this.vista = new Vista();
@@ -66,16 +67,24 @@ public class Metodos {
         }
     }
 
-    public void modificarProductos(int opcion, String referencia) throws SQLException {
+    public void modificarProductos() throws SQLException {
         start.EstableciendoConexion();
-        switch (opcion) {
+        String opcion ="";
+        do{
+        opcion = leerDato("\nEscoja que desea modificar \n"+"1.Nombre\n"+"2.Precio de compra\n"+"3.Precio de venta \n"+"4.Cantidad del producto\n"+
+                            "5.Descripcion de categoria\n"+"6.Todas las anteriores\n");
+        if (isNumeric(opcion) == false) {
+                mostrarInformacion("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
+            }
+        }while(isNumeric(opcion) == false);
+        
+        switch (Integer.parseInt(opcion)) {
             case 1:
                 String update = "UPDATE productos SET nombre=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
                 PreparedStatement UPDATE = start.getConexion().prepareStatement(update);
-                System.out.println("\nINGRESE EL NOMBRE:");
-                String nombre = leer.nextLine();
+                String nombre = leerDato("\nINGRESE EL NOMBRE:");
                 UPDATE.setString(1, nombre); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-                UPDATE.setString(2, referencia);
+                UPDATE.setString(2, referenciaComprobar);
                 int rowsUpdated = UPDATE.executeUpdate();
                 break;
             case 2:
@@ -83,14 +92,13 @@ public class Metodos {
         UPDATE = start.getConexion().prepareStatement(update);
         String valor_compra;
         do{
-        System.out.println("\nIngrese valor de compra:");
-        valor_compra = numerar.nextLine();
+        valor_compra = leerDato("\nIngrese valor de compra:");
             if (isNumeric(valor_compra) == false) {
                 System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(valor_compra) == false);
         UPDATE.setInt(1, Integer.parseInt(valor_compra)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-        UPDATE.setString(2,referencia);
+        UPDATE.setString(2,referenciaComprobar);
         rowsUpdated = UPDATE.executeUpdate();
         break;
              case 3:
@@ -98,14 +106,13 @@ public class Metodos {
         UPDATE = start.getConexion().prepareStatement(update);
         String valor_venta;
         do{
-        System.out.println("\nIngrese valor de venta :");
-        valor_venta=numerar.nextLine();
+        valor_venta=leerDato("\nIngrese valor de venta :");
             if (isNumeric(valor_venta) == false) {
                 System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(valor_venta) == false);
         UPDATE.setInt(1, Integer.parseInt(valor_venta)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-        UPDATE.setString(2,referencia);
+        UPDATE.setString(2,referenciaComprobar);
         rowsUpdated = UPDATE.executeUpdate();
         break;
              case 4:
@@ -113,61 +120,57 @@ public class Metodos {
         UPDATE = start.getConexion().prepareStatement(update);
         String cantidad;
         do{
-        System.out.println("\nIngrese cantidad :");
-        cantidad =  numerar.nextLine();
+        cantidad =  leerDato("\nIngrese cantidad :");
             if (isNumeric(cantidad) == false) {
                 System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(cantidad) == false);
         UPDATE.setInt(1, Integer.parseInt(cantidad)); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-        UPDATE.setString(2,referencia);
+        UPDATE.setString(2,referenciaComprobar);
         rowsUpdated = UPDATE.executeUpdate();
         break;
               case 5:
         update = "UPDATE productos SET categoria=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
         UPDATE = start.getConexion().prepareStatement(update);
-        System.out.println("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
-        String categoria = leer.nextLine();
+        String categoria = leerDato("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
         UPDATE.setString(1, categoria); //SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
-        UPDATE.setString(2,referencia);
+        UPDATE.setString(2,referenciaComprobar);
         rowsUpdated = UPDATE.executeUpdate();
         break;                 
             case 6:
         update = "UPDATE productos SET nombre=?, valor_compra =?, valor_venta=?, cantidad=?, categoria=? WHERE referencia=?"; //Un ejemplo de actualizacion de precio en funcion del numero de referencia
         UPDATE = start.getConexion().prepareStatement(update);
-        System.out.println("\nINGRESE EL NOMBRE:");
-        nombre = leer.nextLine();
+        nombre = leerDato("\nINGRESE EL NOMBRE:");
         do{
-        System.out.println("\nIngrese valor de compra:");
-        valor_compra = numerar.nextLine();
+        valor_compra = leerDato("\nIngrese valor de compra:");
             if (isNumeric(valor_compra) == false) {
                 System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(valor_compra) == false);
         do{
-        System.out.println("\nIngrese valor de venta :");
-        valor_venta=numerar.nextLine();
+        valor_venta= leerDato("\nIngrese valor de venta:");
             if (isNumeric(valor_venta) == false) {
                 System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(valor_venta) == false);
         do{
-        System.out.println("\nIngrese cantidad :");
-        cantidad =  numerar.nextLine();
+        cantidad =  leerDato("\nIngrese cantidad :");
             if (isNumeric(cantidad) == false) {
                 System.out.println("Caracter invalido, intente nuevamente. Recuerde ingresar SOLO NUMEROS");
             } 
         }while(isNumeric(cantidad) == false);
-        System.out.println("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
-        categoria = leer.nextLine();
+        categoria = leerDato("\nINGRESE LA DESCRIPCION DE CATEGORIA:");
         UPDATE.setString(1, nombre);
         UPDATE.setInt(2, Integer.parseInt(valor_venta));//SE REEMPLAZA IGUAL QUE EN LO ANTERIOR, PRIMERO EL NUMERO DEL '?' y luego el valor a poner sobre èl.
         UPDATE.setInt(3, Integer.parseInt(valor_compra));
         UPDATE.setInt(4, Integer.parseInt(cantidad));
         UPDATE.setString(5, categoria);
-        UPDATE.setString(6,referencia);
+        UPDATE.setString(6,referenciaComprobar);
         rowsUpdated = UPDATE.executeUpdate();
-        break;}//Se enumera la cantidad de actualizaciones
+        break;
+        
+            default :
+            mostrarInformacion("Ocurrio un error, intentelo nuevamente");}
        }
     public ArrayList<String> consultarReferencia() throws SQLException{
         start.EstableciendoConexion();
@@ -249,22 +252,13 @@ public class Metodos {
         start.EstableciendoConexion();
         String delete = "DELETE FROM productos WHERE referencia=?";  //Un ejemplo de borrar un dato en funcion de la referencia
         PreparedStatement DELETE = start.getConexion().prepareStatement(delete);
-        String referencia;
-        boolean continuar = false;
-        do {
-            System.out.println("\nIngrese la referencia del producto a eliminar");
-            referencia = leer.nextLine();
-            char[] contador = referencia.toCharArray();
-            if (contador.length > 5) {
-                System.out.println("Cantidad de caracteres invalida, la referencia tiene 5 caracteres maximo.");
-            } else {
-                continuar = true;
-            }
-        } while (continuar == false);
-        DELETE.setString(1, referencia); // Mismo caso de reemplazo
+                if (permitirConsultar()) {
+            DELETE.setString(1, referenciaComprobar); // Mismo caso de reemplazo
         int rowsDeleted = DELETE.executeUpdate(); //FUNCION DE ELIMINAR
         if (rowsDeleted>0) {
-            System.out.println("BORRADO EXITOSO\n");            
+            System.out.println("BORRADO EXITOSO\n"); 
+        }
+                   
         }}
     private static boolean isNumeric(String str){
         return str != null && str.matches("[0-9.]+");
@@ -283,6 +277,21 @@ public class Metodos {
 		JOptionPane.showMessageDialog(null, mensaje);
 	}
         
+        public boolean permitirConsultar() throws SQLException{
+                    boolean permitir= false;
+                    do{
+                    referenciaComprobar = leerDato("Ingrese la Referencia del Producto");                   
+                    ArrayList<String> determinantes = new ArrayList<String>();
+                    determinantes = consultarReferencia();
+                    for(int i = 0; i < determinantes.size(); i++) {
+                        if (determinantes.get(i).equals(referenciaComprobar)) {
+                            permitir=true;
+                        }}if (permitir== false) {
+                            mostrarInformacion("REFERENCIA INEXISTENTE, intentelo nuevamente");
+                        }
+                    }while(permitir == false);
+                    return permitir; 
+        }
 }
 
 

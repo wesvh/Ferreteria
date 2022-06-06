@@ -155,7 +155,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonInsertarActionPerformed
 
     private void botonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarActionPerformed
-        // TODO add your handling code here:
+     try {
+         if (run.permitirConsultar()) {
+             run.modificarProductos();             
+             getPanelresultados().setText("¡¡MODIFICACION EXITOSA!!");
+         }
+     } catch (SQLException ex) {
+         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+     }
     }//GEN-LAST:event_botonModificarActionPerformed
 
     private void botonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConsultarActionPerformed
@@ -163,7 +170,12 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_botonConsultarActionPerformed
 
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
-        // TODO add your handling code here:
+     try {
+         run.borrarProductos();         
+         getPanelresultados().setText("¡¡BORRADO EXITOSO!!");
+     } catch (SQLException ex) {
+         Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+     }
     }//GEN-LAST:event_botonEliminarActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
