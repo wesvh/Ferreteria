@@ -37,6 +37,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        PanelResultados.setEditable(false);
         jScrollPane1.setViewportView(PanelResultados);
 
         BotonOpcion2.setText("Insertar Elementos");
