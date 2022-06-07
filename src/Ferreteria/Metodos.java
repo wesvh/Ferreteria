@@ -188,11 +188,11 @@ public class Metodos {
                 int cantidad = result.getInt(5);
                 String categoria = result.getString(6);
                 rta = "\n" + "Nombre del producto: " + nombre
-                        + ";\n Codigo de producto: " + ref
-                        + ";\n Valor de compra: " + valor_compra
-                        + ";\n Valor de venta: " + valor_venta
-                        + ";\n Cantidad: " + cantidad
-                        + ";\n Categoria: " + categoria + "\n";
+                        + "\n Codigo de producto: " + ref
+                        + "\n Valor de compra: " + valor_compra
+                        + "\n Valor de venta: " + valor_venta
+                        + "\n Cantidad: " + cantidad
+                        + "\n Categoria: " + categoria + "\n";
                 System.out.println(rta);
             }
             start.cerrandoConexion();
