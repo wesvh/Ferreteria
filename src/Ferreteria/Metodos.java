@@ -1,5 +1,6 @@
 package Ferreteria;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +21,7 @@ public class Metodos {
     String upAmount ="\nIngrese Cantidad :";
     String upType ="\nIngrese la Descripcion de Categoria:";
 
-    public void agregarProductos() throws SQLException {
+    public void agregarProductos() throws SQLException, IOException {
         start.EstableciendoConexion();
         String insert = "INSERT INTO  productos (nombre,referencia,valor_compra,valor_venta,cantidad,categoria) VALUES (?,?,?,?,?,?)";
         String nombre, referencia, categoria, valor_compra, valor_venta, cantidad;
@@ -53,7 +54,7 @@ public class Metodos {
         }
     }
 
-    public void modificarProductos() throws SQLException {
+    public void modificarProductos() throws SQLException, IOException {
         start.EstableciendoConexion();
         String opcion = "";
         do {
@@ -130,7 +131,7 @@ public class Metodos {
         }
     }
 
-    public ArrayList<String> consultarReferencia() throws SQLException {
+    public ArrayList<String> consultarReferencia() throws SQLException, IOException {
         start.EstableciendoConexion();
         ArrayList<String> referencias = new ArrayList<String>();
         String select = "SELECT referencia FROM productos"; //Script de la consulta a listar
@@ -145,7 +146,7 @@ public class Metodos {
         return referencias;
     }
 
-    public String listarProductos() throws SQLException {
+    public String listarProductos() throws SQLException, IOException {
         ArrayList<String> temporal = new ArrayList<String>();
         start.EstableciendoConexion();
         String select = "SELECT * FROM productos ORDER BY cantidad ASC"; //Script de la consulta a listar
@@ -201,7 +202,7 @@ public class Metodos {
         return rta;
     }
 
-    public void borrarProductos() throws SQLException {
+    public void borrarProductos() throws SQLException, IOException {
         //SCRIPT DE BORRADO
         start.EstableciendoConexion();
         String delete = "DELETE FROM productos WHERE referencia=?";  //Un ejemplo de borrar un dato en funcion de la referencia
@@ -235,7 +236,7 @@ public class Metodos {
         JOptionPane.showMessageDialog(null, mensaje);
     }
 
-    public boolean permitirConsultar() throws SQLException {
+    public boolean permitirConsultar() throws SQLException, IOException {
         boolean permitir = false;
         do {
             referenciaComprobar = leerDato(upRef);

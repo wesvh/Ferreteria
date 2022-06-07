@@ -171,6 +171,8 @@ public class Menu extends javax.swing.JFrame {
 
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_botonListarActionPerformed
@@ -180,6 +182,8 @@ public class Menu extends javax.swing.JFrame {
             run.agregarProductos();
             getPanelresultados().setText("¡¡INSERCION EXITOSA!!");
         } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonInsertarActionPerformed
@@ -192,6 +196,8 @@ public class Menu extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonModificarActionPerformed
 
@@ -201,6 +207,8 @@ public class Menu extends javax.swing.JFrame {
             getPanelresultados().setText(run.consultarProductos());}
         } catch (SQLException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonConsultarActionPerformed
 
@@ -209,6 +217,8 @@ public class Menu extends javax.swing.JFrame {
             run.borrarProductos();
             getPanelresultados().setText("¡¡BORRADO EXITOSO!!");
         } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botonEliminarActionPerformed

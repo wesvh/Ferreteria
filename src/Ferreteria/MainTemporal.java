@@ -1,10 +1,11 @@
 package Ferreteria;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Scanner;
 //AUTORES : Esteban Villada Henao, Cristian Camilo Roa Rojas y Giovany Andrés Molina
 public class MainTemporal {
     
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         Conexion start = new Conexion();
         start.EstableciendoConexion();
         Metodos run = new Metodos();        
